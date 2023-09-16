@@ -1,6 +1,6 @@
-#LCRD-Tester
+# LCRD-Tester
 
-The Tester is a Tool for identification ofthe part and its values!
+The Tester is a tool for identification of the component and its values!
 
 ![PCB](/docs/electronic-component-tester-nano.png/)
 
@@ -10,11 +10,11 @@ Compatibility list:
 - Capacitors
 - Resistors
 - Diodes
-(- Tranistors)
+- (Tranistors)
 
-# DISCLAIMERS
+## DISCLAIMERS
 
-**This is still "work-in-progress (WIP)" so I do NOT take any kind of warranty/responsibility for damages/data losses!**
+**This is still "work-in-progress (WIP)" so I do NOT take any kind of responsibility for damages/data losses!**
 
 **You can use this at your own risk without guarantees and put device on non conductive surface or enclosure!**
 
@@ -38,23 +38,21 @@ Have fun :)
 
 ## SOFTWARE
 
-Download my adapted ![code] (/code-aduino/LCRD-Tester-WodoWiesel.ino)
-
-and configure your setup and load it via  Arduino IDE.
+Download my adapted [code](/code-aduino/LCRD-Tester-WodoWiesel.ino) and configure your setup and load it via Arduino IDE.
 
 ## HOW TO USE
 
-1. Configure code adapted to your setup regarding used partss and display typee
+1. configure code adapted to your setup regarding used partss and display typee
 
 2. upload code to your arduino
 
 3. solder the new pcb
 
-4. put component of choice in the tsting headers an read value
+4. put component of choice in the testing headers and read values
 
 ## CREDITS
 
- :copyright: 2023 WodoWiesel 
+:copyright: 2023 WodoWiesel 
 
 Github (https://github.com/wodowiesel/)
 
