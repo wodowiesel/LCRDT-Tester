@@ -10,7 +10,7 @@ Compatibility list:
 - Capacitors
 - Resistors
 - Diodes
-- (Tranistors)
+- (Transistors)
 
 ## DISCLAIMERS
 
@@ -42,7 +42,7 @@ Download my adapted [code](/code-aduino/LCRD-Tester-WodoWiesel.ino) and configur
 
 ## HOW TO USE
 
-1. configure code adapted to your setup regarding used partss and display typee
+1. configure code adapted to your setup regarding used parts and display type
 
 2. upload code to your arduino
 
@@ -52,7 +52,7 @@ Download my adapted [code](/code-aduino/LCRD-Tester-WodoWiesel.ino) and configur
 
 ## CREDITS
 
-:copyright: 2023 WodoWiesel 
+:copyright: 2023 WodoWiesel
 
 Github (https://github.com/wodowiesel/)
 
