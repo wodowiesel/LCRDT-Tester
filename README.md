@@ -12,6 +12,8 @@ Compatibility list:
 - Diodes
 - Transistors
 - ESR
+- Type (PNP/NPN/FET/MOS)
+- hFE B
 
 ## DISCLAIMERS
 
@@ -29,9 +31,9 @@ Have fun :)
 - 1x Custom PCB for Arduino Nano v3 by WodoWiesel
 - 3x 10 kOhm Resistors
 - 3x 470 Ohm Resistors
-- 1x 100 nF capacitor
+- 1x 100 nF capacitor (or without, just bridge it)
 - 1x 4-pin display for +3.3V (0.96" OLED)
-- 2x Push-Button
+- 2x Push-Button (reset & start)
 - 1x 3-Pin Male Pin Header (for component testing)
 - 1x 4-Pin Male Pin Header (for display)
 
