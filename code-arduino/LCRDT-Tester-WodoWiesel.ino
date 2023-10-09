@@ -1,5 +1,10 @@
-// wodowiesl                                                 |
-//    Transistor Tester for Arduino (version 1.08a)     |
+// wodowiesel 10/10/2023
+// LCRDT-Tester for Arduino (version 1.11)
+// https://github.com/wodowiesel/LCRDT-Tester
+// original sources:
+// https://arduino.ru/forum/proekty/transistor-tester-arduino
+// https://github.com/vlad-gheorghe/ardutester
+// based  on PDF: Karl-Heinz Kubbeler (version 1.08k, 2013/ 1.10, 2014)
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -56,7 +61,6 @@
 
 
 // ******** config options for your Semiconductor tester
-
 // Every changing of this Makefile will result in new compiling the whole
 // programs, if you call make or make upload.
 
@@ -124,9 +128,10 @@
 
 // NO_AREF_CAP tells your Software, that you have no Capacitor installed at pin AREF (21).
 // This enables a shorter wait-time for AUTOSCALE_ADC function.
-// A capacitor with 1nF can be used with the option NO_AREF_CAP set.
+// A capacitor with 1 nF can be used with the option NO_AREF_CAP set.
+// Connect CAP over AREF to GND
 #define NO_AREF_CAP
-
+//#define AREF_CAP 100
 // The OP_MHZ option tells the software the Operating Frequency of your ATmega.
 // OP_MHZ 16
 
@@ -237,9 +242,9 @@
   To calibrate your tester the resistor-values can be adjusted:
 */
 //#define R_L_VAL 6800          // standard value 680 Ohm, multiplied by 10 for 0.1 Ohm resolution
-#define R_L_VAL 6600        // this will be define a 669 Ohm
+#define R_L_VAL 470        // this will define a 470 Ohm
 //#define R_H_VAL 47000         // standard value 470000 Ohm, multiplied by 10, divided by 100 
-#define R_H_VAL 10000       // this will be define a 10 kOhm, divided by 100 
+#define R_H_VAL 10000       // this will define a 10 kOhm, divided by 100 
 
 #define R_DDR DDRB
 #define R_PORT PORTB
@@ -337,7 +342,6 @@
 
 // ########  End of configuration 
 
-
 #if R_ANZ_MESS < ANZ_MESS
   #undef R_ANZ_MESS
   #define R_ANZ_MESS ANZ_MESS
@@ -355,7 +359,6 @@
 #ifndef REF_L_KORR
   #define REF_L_KORR 50
 #endif
-
 
 // the following definitions specify where to load external data from: EEprom or flash
 #ifdef USE_EEPROM
@@ -399,7 +402,6 @@
 // CABLE_CAP defines the capacity (pF) of 12cm cable with clip at the terminal pins
 #define CABLE_CAP 3
 
-
 // select the right Processor Typ
 /*
 #if defined(__AVR_ATmega48__)
@@ -429,7 +431,6 @@
 #endif
 */
 #define PROCESSOR_TYP 328
-
 
 // automatic selection of right call type
 #if FLASHEND > 0X1FFF
@@ -560,7 +561,6 @@
   #endif
 #endif
 
-
 #ifndef REF_R_KORR
   #define REF_R_KORR 0
 #endif
@@ -583,7 +583,6 @@
   // if POWER OFF function is not selected, wait 14s before repeat measurement
   #define OFF_WAIT_TIME  LONG_WAIT_TIME
 #endif
-
 
 //**********************************************************
 // defines for the selection of a correctly  ADC-Clock 
@@ -639,7 +638,6 @@
   #define FAST_CLOCK_DIV (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0)
 #endif
 
-
 #ifndef PIN_RP
   #define PIN_RP  220           // estimated internal resistance PORT to VCC
                                 // will only be used, if not set before in config.h
@@ -680,7 +678,6 @@ Is SWUART_INVERT defined, the UART works in inverse mode
   #define TXD_VAL TXD_MSK
 #endif
 
-
 #ifdef INHIBIT_SLEEP_MODE
   // save memory, do not use the sleep mode
   #define wait_about5ms() wait5ms()
@@ -714,7 +711,6 @@ Is SWUART_INVERT defined, the UART works in inverse mode
   #define wait_about3s() sleep_5ms(600)
   #define wait_about4s() sleep_5ms(800)
 #endif
-
 
 #undef AUTO_RH
 #ifdef WITH_AUTO_REF
@@ -765,7 +761,6 @@ Is SWUART_INVERT defined, the UART works in inverse mode
   #undef EBC_STYLE
 #endif
 
-
 #if defined(NOK5110) || defined(OLED096)
   #define LCD_CHAR_DIODE1 0x91
   #define LCD_CHAR_DIODE2 0x92
@@ -803,7 +798,6 @@ Is SWUART_INVERT defined, the UART works in inverse mode
 #endif
 
 #endif  // #ifndef ADC_PORT
-
 
 // the hFE (B) can be determined with common collector and common emitter circuit
 // with more than 16K both methodes are possible
@@ -852,7 +846,6 @@ const uint16_t RLtab[] MEM_TEXT = {22447,20665,19138,17815,16657,15635,14727,139
 // with integer factors the ADC-value will be changed to mV resolution in ReadADC !
 // all if statements are corrected to the mV resolution.
 
-
 // Strings in PROGMEM or in EEprom
 
 #if defined(LANG_GERMAN)    // deutsch
@@ -897,7 +890,6 @@ const uint16_t RLtab[] MEM_TEXT = {22447,20665,19138,17815,16657,15635,14727,139
     const unsigned char ATE[] MEM_TEXT = "Test End";
   #endif
 #endif
-
 
 // Strings, which are not dependent of any language
 const unsigned char Bat_str[] MEM_TEXT = "Bat. ";
@@ -947,8 +939,7 @@ const unsigned char VCC_str[] MEM_TEXT = "VCC=";
   #define LCD_CLEAR
 #endif
 
-
-const unsigned char VERSION_str[] MEM2_TEXT = "Ttester 1.08.4";
+const unsigned char VERSION_str[] MEM2_TEXT = "LCRDT-Tester v1.11";
 
 const unsigned char AnKat[] MEM_TEXT = {'-', LCD_CHAR_DIODE1, '-',0};
 const unsigned char KatAn[] MEM_TEXT = {'-', LCD_CHAR_DIODE2, '-',0};
@@ -983,7 +974,6 @@ const unsigned char Resistor_str[] MEM_TEXT = {'-', LCD_CHAR_RESIS1, LCD_CHAR_RE
 #ifdef DebugOut
   #define LCD_CLEAR
 #endif
-
 
 const unsigned char DiodeIcon1[] MEM_TEXT = { 0x11, 0x19, 0x1d, 0x1f, 0x1d, 0x19, 0x11, 0x00 }; // Diode-Icon Anode left
 const unsigned char DiodeIcon2[] MEM_TEXT = { 0x11, 0x13, 0x17, 0x1f, 0x17, 0x13, 0x11, 0x00 }; // Diode-Icon Anode right
@@ -1028,7 +1018,6 @@ const uint8_t EE_ESR_ZEROtab[] PROGMEM = {ESR_ZERO, ESR_ZERO, ESR_ZERO, ESR_ZERO
 // Multiplier for capacity measurement with R_H (470KOhm)
 unsigned int RHmultip = DEFAULT_RH_FAKT;
 
-
 #else
   // no MAIN_C
   #define COMMON extern
@@ -1063,7 +1052,6 @@ unsigned int RHmultip = DEFAULT_RH_FAKT;
   extern unsigned int RHmultip;
 
 #endif  // MAIN_C
-
 
 struct Diode_t {
   uint8_t Anode;
@@ -1283,7 +1271,7 @@ byte TestKeyPin = 17;  // A3
   #endif
 #endif
 
-// begin of transistortester program
+// begin of tester program
 void setup()
 {
   Serial.begin(9600);
@@ -1306,9 +1294,9 @@ void setup()
     lcd_pgm_custom_char(LCD_CHAR_U,      MicroIcon);   // load Micro as Custom-Character
     lcd.home();
   
-    lcd_string("TransistorTester");
+    lcd_string("LCRDT-Tester");
     lcd_set_cursor(1, 0);
-    lcd_string("forArduino 1.08a");
+    lcd_string("WodoWiesel v1.11");
   #endif
 
   #ifdef NOK5110
@@ -1333,13 +1321,13 @@ void setup()
   #endif
 
   #if defined(NOK5110) || defined(OLED096)
-    lcd_string("Transistor");
+    lcd_string("LCRDT-");
     lcd_set_cursor(1, 0);
     lcd_string("Tester");
     lcd_set_cursor(2, 0);
-    lcd_string("for Arduino");
+    lcd_string("WodoWiesel");
     lcd_set_cursor(3, 0);
-    lcd_string("1.08.004");
+    lcd_string("v1.11");
   #endif
 
   //ON_DDR = 0;
@@ -2369,7 +2357,6 @@ void lcd_clear_line(void) {
 }
 #endif
 
-
 /* ************************************************************************
  *   display of values and units
  * ************************************************************************ */
@@ -2475,7 +2462,6 @@ void DisplayValue(unsigned long Value, int8_t Exponent, unsigned char Unit, unsi
   if (Unit) lcd_data(Unit);
 }
 
-
 #ifndef INHIBIT_SLEEP_MODE
 // set the processor to sleep state
 // wake up will be done with compare match interrupt of counter 2
@@ -2516,7 +2502,6 @@ void sleep_5ms(uint16_t pause){
   TIMSK2 = (0<<OCIE2B) | (0<<OCIE2A) | (0<<TOIE2);  // disable output compare match A interrupt
 }
 #endif
-
 
 // show the Pin Layout of the device 
 void PinLayout(char pin1, char pin2, char pin3) {
@@ -2956,7 +2941,6 @@ no_c0save:
   wait_about1s();
 #endif
 } 
-
  
 #ifdef RequireShortedProbes
 /*
@@ -3229,7 +3213,6 @@ void CheckPins(uint8_t HighPin, uint8_t LowPin, uint8_t TristatePin) {
       }
     }
   }  // end component has current without TristatePin signal
-
 
   #ifdef COMMON_COLLECTOR
     // Test circuit with common collector (Emitter follower) PNP
@@ -5843,3 +5826,4 @@ void uart_putc(uint8_t data) {
   Serial.write(data);
   delay(2);
 }
+// EOF

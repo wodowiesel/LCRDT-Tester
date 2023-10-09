@@ -10,7 +10,7 @@ Compatibility list:
 - Capacitors
 - Resistors
 - Diodes
-- (Transistors)
+- Transistors
 
 ## DISCLAIMERS
 
@@ -26,10 +26,11 @@ Have fun :)
 
 - 1x Arduino Nano v3 (or Uno for old versions) + USB-Cable
 - 1x Custom PCB for Arduino Nano v3 by WodoWiesel
-- 3x 330 Ohm Resistors
+- 3x 10 kOhm Resistors
 - 3x 470 Ohm Resistors
-- 1x ~1,5 nF capacitor
-- 1x 4-pin display for +3.3v
+- 1x 100 nF capacitor
+- 1x 4-pin display for +3.3V (0.96" OLED)
+- 2x Push-Button
 - 1x 3-Pin Male Pin Header (for component testing)
 - 1x 4-Pin Male Pin Header (for display)
 
@@ -38,7 +39,7 @@ Have fun :)
 
 ## SOFTWARE
 
-Download my adapted [code](/code-aduino/LCRD-Tester-WodoWiesel.ino) and configure your setup and load it via Arduino IDE.
+Download my adapted [code](/code-aduino/LCRDT-Tester-WodoWiesel.ino) and configure your setup and load it via Arduino IDE.
 
 ## HOW TO USE
 
@@ -52,7 +53,7 @@ Download my adapted [code](/code-aduino/LCRD-Tester-WodoWiesel.ino) and configur
 
 ## CREDITS
 
-:copyright: 2023 WodoWiesel
+:copyright: 10/10/2023 WodoWiesel
 
 Github (https://github.com/wodowiesel/)
 
@@ -80,6 +81,9 @@ Proekty (https://arduino.ru/forum/proekty/transistor-tester-arduino/)
 
 Vlad (https://github.com/vlad-gheorghe/ardutester/)
 
+Code: Karl-Heinz Kubbeler (version 1.08k, 2013 / 1.10, 2014) 
+
+engl. Journal [PDF](/docs/ttester_eng108k.pdf)
 
 ## LICENSES
 
