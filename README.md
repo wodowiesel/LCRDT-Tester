@@ -1,8 +1,8 @@
-# LCRD-Tester
+# LCRDT-Tester
 
 The Tester is a tool for identification of the component and its values!
 
-![PCB](/docs/electronic-component-tester-nano.png/)
+![PCB](/docs/PCB-laypout-Wodowiesel-LCRDT-tester-schematics.png/)
 
 Compatibility list:
 
@@ -11,6 +11,7 @@ Compatibility list:
 - Resistors
 - Diodes
 - Transistors
+- ESR
 
 ## DISCLAIMERS
 
