@@ -1,5 +1,5 @@
 // wodowiesel 10/10/2023
-// LCRDT-Tester for Arduino (version 1.11)
+// LCRDT-Tester for Arduino (version 1.11e)
 // https://github.com/wodowiesel/LCRDT-Tester
 // original sources:
 // https://arduino.ru/forum/proekty/transistor-tester-arduino
@@ -59,7 +59,6 @@
   #include <Adafruit_SSD1306.h>
 #endif
 
-
 // ******** config options for your Semiconductor tester
 // Every changing of this Makefile will result in new compiling the whole
 // programs, if you call make or make upload.
@@ -75,7 +74,7 @@
 // The LCD_CYRILLIC option is necessary, if you have a display with cyrillic characterset.
 // This lcd-display don't have a character for Ohm and for u (micro).
 // Russian language requires a LCD controller with russian characterset and option LCD_CYRILLIC!
-#define LCD_CYRILLIC
+//#define LCD_CYRILLIC
 
 // The LCD_DOGM option must be set for support of the DOG-M type of LCD modules with ST7036 controller.
 // For this LCD type the contrast must be set with software command.
@@ -93,13 +92,13 @@
 // With a external capacitor a additionally correction of reference voltage is figured out for 
 // low capacity measurement and also for the AUTOSCALE_ADC measurement.
 // The AUTO_CAL option is only selectable for mega168 and mega328.
-//#define AUTO_CAL
+#define AUTO_CAL
 
 // FREQUENCY_50HZ enables a 50 Hz frequency generator for up to one minute at the end of selftests.
 //#define FREQUENCY_50HZ
 
 // The WITH_AUTO_REF option enables reading of internal REF-voltage to get factors for the Capacity measuring.
-#define WITH_AUTO_REF
+#define WITH_AUTO_REF // nano v3 -< 1.1V
 // REF_C_KORR corrects the reference Voltage for capacity measurement (<40uF) and has mV units.
 // Greater values gives lower capacity results.
 #define REF_C_KORR 12
@@ -126,12 +125,13 @@
 //#define ESR_ZERO 29
 #define ESR_ZERO 20
 
-// NO_AREF_CAP tells your Software, that you have no Capacitor installed at pin AREF (21).
+// NO_AREF_CAP tells your Software, that you have no Capacitor installed at pin AREF (21)-> nano pin18
 // This enables a shorter wait-time for AUTOSCALE_ADC function.
 // A capacitor with 1 nF can be used with the option NO_AREF_CAP set.
 // Connect CAP over AREF to GND
-#define NO_AREF_CAP
+//#define NO_AREF_CAP // =0
 //#define AREF_CAP 100
+
 // The OP_MHZ option tells the software the Operating Frequency of your ATmega.
 // OP_MHZ 16
 
@@ -154,9 +154,9 @@
 // Setting of NO_NANO avoids the use of n as prefix for Farad (nF), the mikro prefix is used insted (uF).
 //#define NO_NANO
 
-// The PULLUP_DISABLE option disable the pull-up Resistors of IO-Ports.
+// The PULLUP_DISABLE option disables the pull-up Resistors of IO-Ports.
 // To use this option a external pull-up Resistor (10k to 30k)
-// from Pin 13 to VCC must be installed!
+// from Pin 13 () to VCC must be installed!
 #define PULLUP_DISABLE
 
 // The ANZ_MESS option specifies, how often an ADC value is read and accumulated.
@@ -241,10 +241,10 @@
 
   To calibrate your tester the resistor-values can be adjusted:
 */
-//#define R_L_VAL 6800          // standard value 680 Ohm, multiplied by 10 for 0.1 Ohm resolution
-#define R_L_VAL 470        // this will define a 470 Ohm
-//#define R_H_VAL 47000         // standard value 470000 Ohm, multiplied by 10, divided by 100 
-#define R_H_VAL 10000       // this will define a 10 kOhm, divided by 100 
+//#define R_L_VAL 680 0          // standard value 680 Ohm, multiplied by 10 for 0.1 Ohm resolution
+#define R_L_VAL 3300        // this will define a 330 Ohm
+//#define R_H_VAL 470 00         // standard value 470 000 Ohm, multiplied by 10, divided by 100 
+#define R_H_VAL 1000       // this will define a 10 000 Ohm, multiplied by 10, divided by 100 
 
 #define R_DDR DDRB
 #define R_PORT PORTB
@@ -266,16 +266,17 @@
 #define ON_DDR DDRD
 #define ON_PORT PORTD
 #define ON_PIN_REG PIND
-#define ON_PIN 18               // Pin, must be switched to high to switch power on
+#define ON_PIN 18               // Pin, must be switched to high to switch power on (aref?)
 
 #ifdef STRIP_GRID_BOARD
 // Strip Grid board version
   #define RST_PIN 0             // Pin, is switched to low, if push button is pressed
 #else
 // normal layout version
-  #define RST_PIN 17            // Pin, is switched to low, if push button is pressed
+  //#define RST_PIN 17            // Pin, is switched to low, if push button is pressed
+  #define RST_PIN 28
+  //#define RST_PINX 3
 #endif
-
 
 // Port(s) / Pins for LCD
 
@@ -313,7 +314,6 @@
   #define HW_LCD_B7_PIN          2
 #endif
 
-
 // U_VCC defines the VCC Voltage of the ATmega in mV units
 
 #define U_VCC 5000
@@ -324,7 +324,6 @@
 // Otherwise (without this option) the voltage drop during load time is compensated to avoid displaying
 // too much capacity for capacitors with internal parallel resistance.
 // #define NO_CAP_HOLD_TIME
-
 
 // U_SCALE can be set to 4 for better resolution of ReadADC function for resistor measurement
 #define U_SCALE 4
@@ -391,7 +390,6 @@
   #define use_lcd_pgm
 #endif
 
-
 // RH_OFFSET : systematic offset of resistor measurement with RH (470k) 
 // resolution is 0.1 Ohm, 3500 defines a offset of 350 Ohm
 #define RH_OFFSET 3500 
@@ -418,7 +416,7 @@
   #define PROCESSOR_TYP 168
 #elif defined(__AVR_ATmega328__)
   #define PROCESSOR_TYP 328
-#elif defined(__AVR_ATmega328P__)
+#elif defined(__AVR_ATmega328P__) --> nano v3
   #define PROCESSOR_TYP 328
 #elif defined(__AVR_ATmega640__)
   #define PROCESSOR_TYP 1280
@@ -471,7 +469,7 @@
   #define MUX_INT_REF 0x0e  // channel number of internal 1.1 V
 
 //------------------=========----------
-#elif PROCESSOR_TYP == 328
+#elif PROCESSOR_TYP == 328 // nano v3
 //------------------=========----------
   #define MCU_STATUS_REG MCUCR
   #define ADC_COMP_CONTROL ADCSRB

@@ -11,6 +11,8 @@ Compatibility list:
 - Resistors
 - Diodes
 - Transistors
+
+- Vloss
 - ESR
 - Type (PNP/NPN/FET/MOS)
 - hFE B
@@ -30,7 +32,7 @@ Have fun :)
 - 1x Arduino Nano v3 (or Uno for old versions) + USB-Cable
 - 1x Custom PCB for Arduino Nano v3 by WodoWiesel
 - 3x 10 kOhm Resistors
-- 3x 470 Ohm Resistors
+- 3x 330 Ohm Resistors
 - 1x 100 nF capacitor (or without, just bridge it)
 - 1x 4-pin display for +3.3V (0.96" OLED)
 - 2x Push-Button (reset & start)
@@ -84,7 +86,7 @@ Proekty (https://arduino.ru/forum/proekty/transistor-tester-arduino/)
 
 Vlad (https://github.com/vlad-gheorghe/ardutester/)
 
-Code: Karl-Heinz Kubbeler (version 1.08k, 2013 / 1.10, 2014) 
+Code: Karl-Heinz Kubbeler (version 1.08k, 2013 / 1.10, 2014)
 
 engl. Journal [PDF](/docs/ttester_eng108k.pdf)
 
