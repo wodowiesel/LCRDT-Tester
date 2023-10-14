@@ -132,7 +132,7 @@
         "min_track_width": 0.19999999999999998,
         "min_via_annular_width": 0.049999999999999996,
         "min_via_diameter": 0.39999999999999997,
-        "solder_mask_to_copper_clearance": 0.0,
+        "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
       "teardrop_options": [
@@ -410,7 +410,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "LCRD-Tester.kicad_pro",
+    "filename": "LCRDT-Tester.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -462,7 +462,7 @@
       "gencad": "GB-Dumper.cad",
       "idf": "GB-Dumper.emn",
       "netlist": "GB Dumper.net",
-      "specctra_dsn": "GB-Dumper.dsn",
+      "specctra_dsn": "export/GB-Dumper.dsn",
       "step": "GB-Dumper.step",
       "vmrl": "",
       "vrml": "GB-Dumper.wrl"

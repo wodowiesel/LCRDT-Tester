@@ -1,0 +1,155 @@
+Cmp-Mod V01 Created by PcbNew   date = 14.10.2023 20:06:56
+
+BeginCmp
+TimeStamp = 0ea921b0-6297-4f77-ac18-61faf42db8e3
+Path = /242bf5a0-d8e5-4aa1-912b-805b8ce485d2
+Reference = J1;
+ValeurCmp = Test;
+IdModule  = Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = 1f83d726-909d-422d-bcbc-ffcfa4bcdf2f
+Path = /b471a660-f414-42fa-b419-5e0432c15c7b
+Reference = R6;
+ValeurCmp = 10K;
+IdModule  = Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 2264b32f-f2e0-4207-a7d1-90ae0b834bd7
+Path = 
+Reference = REF**;
+ValeurCmp = OSHW-Logo2_7.3x6mm_SilkScreen;
+IdModule  = Symbol:OSHW-Logo2_7.3x6mm_SilkScreen;
+EndCmp
+
+BeginCmp
+TimeStamp = 2effc2af-dfae-4ee1-9f01-384f8d2f9678
+Path = /1ddb2993-a6ac-40a4-addd-8e588c8c1079
+Reference = R1;
+ValeurCmp = 330;
+IdModule  = Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 36570266-ac30-48fb-a957-d39c502c9460
+Path = /03976cdf-8247-461b-89e7-8a1a1639b838
+Reference = C1;
+ValeurCmp = 100n;
+IdModule  = Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 5a397f61-35c4-4c18-9dcd-73a2d44cc9af
+Path = /16ee6ea3-f8e7-42d6-adf2-84c0e1e68606
+Reference = A1;
+ValeurCmp = Arduino_Nano_v3.x;
+IdModule  = Module:Arduino_Nano;
+EndCmp
+
+BeginCmp
+TimeStamp = 6a99a2d4-9439-43ca-91a6-a33a4600a6a5
+Path = /821327b3-1b91-4c27-8161-1995f1a78c3e
+Reference = R3;
+ValeurCmp = 330;
+IdModule  = Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 7813b372-135c-4554-8bda-8f8d0900a309
+Path = /ecab57a3-b2e6-45ab-8170-262ca70eb2e8
+Reference = R5;
+ValeurCmp = 330;
+IdModule  = Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 9250e7b6-08f4-4b96-82e6-0bdd7a7780f2
+Path = /13012256-ee2d-4d67-89c2-abf3d1a26d1f
+Reference = Start;
+ValeurCmp = SW_Push;
+IdModule  = Button_Switch_THT:SW_PUSH_6mm_H4.3mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 9459fe46-15c3-4723-a4a5-6dcfc471c9a5
+Path = /b61f4018-8c9e-45cb-ad4e-a819b99ae3b5
+Reference = J2;
+ValeurCmp = Disp;
+IdModule  = Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = 9b5e6f27-b156-47f9-a2dc-2654fc3d78f8
+Path = /1ab30d54-dab7-4e14-98c2-00685705793f
+Reference = R4;
+ValeurCmp = 10K;
+IdModule  = Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = aa0d9dbe-3994-46c1-974b-adede7685be0
+Path = 
+Reference = REF9**;
+ValeurCmp = MountingHole_3.2mm_M3_DIN965_Pad;
+IdModule  = MountingHole:MountingHole_3.2mm_M3_DIN965_Pad;
+EndCmp
+
+BeginCmp
+TimeStamp = bd48ed56-d7bd-4e94-a713-fb7342425553
+Path = 
+Reference = G21;
+ValeurCmp = LOGO;
+IdModule  = Logos:wiesel-kicad-back-white;
+EndCmp
+
+BeginCmp
+TimeStamp = c5d753c6-ca81-4233-8ebd-6b9fc39f7e97
+Path = /77f00348-5831-454d-bf4b-19f2dac361e7
+Reference = Reset;
+ValeurCmp = SW_Push;
+IdModule  = Button_Switch_THT:SW_PUSH_1P1T_6x3.5mm_H4.3_APEM_MJTP1243;
+EndCmp
+
+BeginCmp
+TimeStamp = d6371195-a98c-4851-98f2-131ee8feffde
+Path = /64a45ff2-3518-4684-87db-f9e0fbc26013
+Reference = R2;
+ValeurCmp = 10K;
+IdModule  = Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal;
+EndCmp
+
+BeginCmp
+TimeStamp = 671729fd-aac3-49b1-beea-7a99a8e33fb3
+Path = 
+Reference = G3*;
+ValeurCmp = LOGO;
+IdModule  = Logos:recycling-symbol-kicad;
+EndCmp
+
+BeginCmp
+TimeStamp = 6c9dfa52-d9c7-40f7-a6f9-dfdefe216693
+Path = 
+Reference = REF7**;
+ValeurCmp = WEEE-Logo_4.2x6mm_SilkScreen;
+IdModule  = Symbol:WEEE-Logo_4.2x6mm_SilkScreen;
+EndCmp
+
+BeginCmp
+TimeStamp = a16f32c8-c305-4795-b406-f14c68edeca3
+Path = 
+Reference = G6**;
+ValeurCmp = LOGO;
+IdModule  = TheBrutzlers_Lib:approved_theBrutzler;
+EndCmp
+
+BeginCmp
+TimeStamp = ff91776f-7507-474e-9004-d7590177f487
+Path = 
+Reference = REF8**;
+ValeurCmp = KiCad-Logo2_5mm_SilkScreen;
+IdModule  = Symbol:KiCad-Logo2_5mm_SilkScreen;
+EndCmp
+
+EndListe

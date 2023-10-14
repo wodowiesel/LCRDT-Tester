@@ -1,0 +1,9 @@
+"ID";"Bezeichner";"Footprint";"Stückzahl";"Bezeichnung";"Anbieter und Referenz";
+1;"J1";"PinSocket_1x03_P2.54mm_Vertical";1;"Test";;;
+2;"R6,R4,R2";"R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal";3;"10K";;;
+3;"R1,R3,R5";"R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal";3;"330";;;
+4;"C1";"C_Disc_D5.0mm_W2.5mm_P5.00mm";1;"100n";;;
+5;"A1";"Arduino_Nano";1;"Arduino_Nano_v3.x";;;
+6;"Start";"SW_PUSH_6mm_H4.3mm";1;"SW_Push";;;
+7;"J2";"PinSocket_1x04_P2.54mm_Vertical";1;"Disp";;;
+8;"Reset";"SW_PUSH_1P1T_6x3.5mm_H4.3_APEM_MJTP1243";1;"SW_Push";;;

@@ -64,11 +64,11 @@
       35,
       36
     ],
-    "visible_layers": "00011f0_ffffffff",
+    "visible_layers": "002b1f0_ffffffff",
     "zone_display_mode": 0
   },
   "meta": {
-    "filename": "LCRD-Tester.kicad_prl",
+    "filename": "LCRDT-Tester.kicad_prl",
     "version": 3
   },
   "project": {
