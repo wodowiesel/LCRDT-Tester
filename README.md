@@ -1,6 +1,6 @@
 # LCRDT-Tester
 
-The Tester is a tool for identification of the component and its values!
+The Tester is a tool for identification of the electronic components and its values based on Arduino Nano v3 with internal reference incl. pcb schematics & code.
 
 ![PCB](/docs/PCB-laypout-Wodowiesel-LCRDT-tester-schematics.png/)
 
