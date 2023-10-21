@@ -6,7 +6,7 @@
 
   (paper "A4")
   (title_block
-    (title "LCRD-Tester")
+    (title "LCRDT-Tester")
     (date "2023-10-05")
     (rev "0.3")
     (company "(C) WodoWiesel")
