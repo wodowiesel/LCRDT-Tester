@@ -1,5 +1,5 @@
-// wodowiesel 10/10/2023
-// LCRDT-Tester for Arduino (version 1.11e)
+// wodowiesel 12/12/2023
+// LCRDT-Tester for Arduino (version 1.12)
 // https://github.com/wodowiesel/LCRDT-Tester
 // original sources:
 // https://arduino.ru/forum/proekty/transistor-tester-arduino
@@ -19,11 +19,11 @@
 #include <stdint.h>
 #include <avr/power.h>
 
-//#define LCD1602
+//#define LCD1602 // I2C
 //#define LCD_I2C
-//#define NOK5110
-//#define OLED096
-#define OLED_I2C
+//#define NOK5110 // SPI
+//#define OLED096 // SPI SSD1306
+#define OLED_I2C  // SSD1306
 
 #ifdef LCD_I2C
   #ifndef LCD1602
@@ -92,13 +92,13 @@
 // With a external capacitor a additionally correction of reference voltage is figured out for 
 // low capacity measurement and also for the AUTOSCALE_ADC measurement.
 // The AUTO_CAL option is only selectable for mega168 and mega328.
-#define AUTO_CAL
+//#define AUTO_CAL
 
 // FREQUENCY_50HZ enables a 50 Hz frequency generator for up to one minute at the end of selftests.
 //#define FREQUENCY_50HZ
 
 // The WITH_AUTO_REF option enables reading of internal REF-voltage to get factors for the Capacity measuring.
-#define WITH_AUTO_REF // nano v3 -< 1.1V
+#define WITH_AUTO_REF // nano v3 -> 1.1V
 // REF_C_KORR corrects the reference Voltage for capacity measurement (<40uF) and has mV units.
 // Greater values gives lower capacity results.
 #define REF_C_KORR 12
@@ -125,7 +125,7 @@
 //#define ESR_ZERO 29
 #define ESR_ZERO 20
 
-// NO_AREF_CAP tells your Software, that you have no Capacitor installed at pin AREF (21)-> nano pin18
+// NO_AREF_CAP tells your Software, that you have no Capacitor installed at pin AREF (21)-> nano pin 18
 // This enables a shorter wait-time for AUTOSCALE_ADC function.
 // A capacitor with 1 nF can be used with the option NO_AREF_CAP set.
 // Connect CAP over AREF to GND
@@ -156,7 +156,7 @@
 
 // The PULLUP_DISABLE option disables the pull-up Resistors of IO-Ports.
 // To use this option a external pull-up Resistor (10k to 30k)
-// from Pin 13 () to VCC must be installed!
+// from Pin 13 (?) to VCC must be installed!
 #define PULLUP_DISABLE
 
 // The ANZ_MESS option specifies, how often an ADC value is read and accumulated.
@@ -208,12 +208,13 @@
 
 // ########  Configuration
 
-#ifndef ADC_PORT
-//#define DebugOut 3    // if set, output of voltages of resistor measurements in row 2,3,4
-//#define DebugOut 4    // if set, output of voltages of Diode measurement in row 3+4
-//#define DebugOut 5    // if set, output of Transistor checks in row 2+3
-//#define DebugOut 10   // if set, output of capacity measurements (ReadCapacity) in row 3+4 
-
+#ifndef ADC_PORT // debug
+/*
+#define DebugOut 3    // if set, output of voltages of resistor measurements in row 2,3,4
+#define DebugOut 4    // if set, output of voltages of Diode measurement in row 3+4
+#define DebugOut 5    // if set, output of Transistor checks in row 2+3
+#define DebugOut 10   // if set, output of capacity measurements (ReadCapacity) in row 3+4 
+*/
 /*
   Port, that is directly connected to the probes.
   This Port must have an ADC-Input  (ATmega8:  PORTC).
@@ -244,7 +245,7 @@
 //#define R_L_VAL 680 0          // standard value 680 Ohm, multiplied by 10 for 0.1 Ohm resolution
 #define R_L_VAL 3300        // this will define a 330 Ohm
 //#define R_H_VAL 470 00         // standard value 470 000 Ohm, multiplied by 10, divided by 100 
-#define R_H_VAL 1000       // this will define a 10 000 Ohm, multiplied by 10, divided by 100 
+#define R_H_VAL 1000       // this will define a 10 000 Ohm, multiplied by 10 (10 000  0), divided by 100 (10 00)
 
 #define R_DDR DDRB
 #define R_PORT PORTB
@@ -252,8 +253,8 @@
 /*
   Port for the Test resistors
   The Resistors must be connected to the lower 6 Pins of the Port in following sequence:
-  RLx = 680R-resistor for Test-Pin x
-  RHx = 470k-resistor for Test-Pin x
+  RLx = 680  resistor for Test-Pin x
+  RHx = 470k resistor for Test-Pin x
 
   RL1 an Pin 0
   RH1 an Pin 1
@@ -278,7 +279,7 @@
   //#define RST_PINX 3
 #endif
 
-// Port(s) / Pins for LCD
+// Port(s)/ Pins for LCD
 
 #ifdef STRIP_GRID_BOARD
   // special Layout for strip grid board
@@ -401,7 +402,6 @@
 #define CABLE_CAP 3
 
 // select the right Processor Typ
-/*
 #if defined(__AVR_ATmega48__)
   #define PROCESSOR_TYP 168
 #elif defined(__AVR_ATmega48P__)
@@ -412,11 +412,11 @@
   #define PROCESSOR_TYP 168
 #elif defined(__AVR_ATmega168__)
   #define PROCESSOR_TYP 168
-#elif defined(__AVR_ATmega168P__)
+#elif defined(__AVR_ATmega168P__) 
   #define PROCESSOR_TYP 168
 #elif defined(__AVR_ATmega328__)
   #define PROCESSOR_TYP 328
-#elif defined(__AVR_ATmega328P__) --> nano v3
+#elif defined(__AVR_ATmega328P__) //--> nano v3
   #define PROCESSOR_TYP 328
 #elif defined(__AVR_ATmega640__)
   #define PROCESSOR_TYP 1280
@@ -427,7 +427,7 @@
 #else
   #define PROCESSOR_TYP 8
 #endif
-*/
+
 #define PROCESSOR_TYP 328
 
 // automatic selection of right call type
@@ -650,10 +650,10 @@
 // defines for the WITH_UART option
 /*
 With define SWUART_INVERT you can specify, if the software-UART operates normal or invers.
-in the normal mode the UART sends with usual logik level (Low = 0; High = 1).
+in the normal mode the UART sends with usual logic level (Low = 0; High = 1).
 You can use this mode for direct connection to a uC, or a level converter like MAX232.
 
-With invers mode the UART sends with invers logik (Low = 1, High = 0).
+With invers mode the UART sends with invers logic (Low = 1, High = 0).
 This is the level of a standard RS232 port of a PC.
 In most cases the output of the software UART can so be connected to the RxD of a PC.
 The specification say, that level -3V to 3V is unspecified, but in most cases it works.
@@ -663,7 +663,7 @@ Is SWUART_INVERT defined, the UART works in inverse mode
 */
 //#define SWUART_INVERT
 
-#define TxD 3   // TxD-Pin of Software-UART; must be at Port C !
+#define TxD 3   // TXD-Pin of Software-UART; must be at Port C !
 #ifdef WITH_UART
   #define TXD_MSK (1<<TxD)
 #else
@@ -852,17 +852,17 @@ const uint16_t RLtab[] MEM_TEXT = {22447,20665,19138,17815,16657,15635,14727,139
    const unsigned char BatEmpty[] MEM_TEXT = "leer!";
    const unsigned char TestFailed2[] MEM_TEXT = "defektes ";
    const unsigned char Component[] MEM_TEXT = "Bauteil";
-//   const unsigned char Diode[] MEM_TEXT = "Diode: ";
+   const unsigned char Diode[] MEM_TEXT = "Diode: ";
    const unsigned char Triac[] MEM_TEXT = "Triac";
    const unsigned char Thyristor[] MEM_TEXT = "Thyristor";
-   const unsigned char Unknown[] MEM_TEXT = " unbek.";
-   const unsigned char TestFailed1[] MEM_TEXT = "Kein,unbek. oder";
+   const unsigned char Unknown[] MEM_TEXT = " unbekanntes";
+   const unsigned char TestFailed1[] MEM_TEXT = "Kein, unbekanntes oder";
    const unsigned char OrBroken[] MEM_TEXT = "oder defekt ";
    const unsigned char TestTimedOut[] MEM_TEXT = "Timeout!";
    #define Cathode_char 'K'
  #ifdef WITH_SELFTEST
    const unsigned char SELFTEST[] MEM_TEXT = "Selbsttest ..";
-   const unsigned char RELPROBE[] MEM_TEXT = "isolate Probe!";
+   const unsigned char RELPROBE[] MEM_TEXT = "isoliere Probe!";
    const unsigned char ATE[] MEM_TEXT = "Test Ende";
  #endif
 #endif
@@ -873,53 +873,54 @@ const uint16_t RLtab[] MEM_TEXT = {22447,20665,19138,17815,16657,15635,14727,139
   const unsigned char BatEmpty[] MEM_TEXT = "empty!";
   const unsigned char TestFailed2[] MEM_TEXT = "damaged ";
   const unsigned char Component[] MEM_TEXT = "part";
-  //const unsigned char Diode[] MEM_TEXT = "Diode: ";
+  const unsigned char Diode[] MEM_TEXT = "Diode: ";
   const unsigned char Triac[] MEM_TEXT = "Triac";
   const unsigned char Thyristor[] MEM_TEXT = "Thyristor";
   const unsigned char Unknown[] MEM_TEXT = " unknown";
-  const unsigned char TestFailed1[] MEM_TEXT = "No, unknown, or";
+  const unsigned char TestFailed1[] MEM_TEXT = "No, unknown or";
   const unsigned char OrBroken[] MEM_TEXT = "or damaged ";
   const unsigned char TestTimedOut[] MEM_TEXT = "Timeout!";
   #define Cathode_char 'C'
 
   #ifdef WITH_SELFTEST
-    const unsigned char SELFTEST[] MEM_TEXT = "Selftest mode..";
+    const unsigned char SELFTEST[] MEM_TEXT = "Selftest mode...";
     const unsigned char RELPROBE[] MEM_TEXT = "isolate Probe!";
     const unsigned char ATE[] MEM_TEXT = "Test End";
   #endif
 #endif
 
 // Strings, which are not dependent of any language
-const unsigned char Bat_str[] MEM_TEXT = "Bat. ";
+const unsigned char Bat_str[] MEM_TEXT = "Bat.";
 const unsigned char OK_str[] MEM_TEXT = "OK";
 const unsigned char mosfet_str[] MEM_TEXT = "-MOS";
 const unsigned char jfet_str[] MEM_TEXT = "JFET";
 const unsigned char GateCap_str[] MEM_TEXT = "C=";
 const unsigned char hfe_str[] MEM_TEXT ="B=";
-const unsigned char NPN_str[] MEM_TEXT = "NPN ";
-const unsigned char PNP_str[] MEM_TEXT = "PNP ";
+const unsigned char type_str[] MEM_TEXT ="Type=";
+const unsigned char NPN_str[] MEM_TEXT = "NPN";
+const unsigned char PNP_str[] MEM_TEXT = "PNP";
 
 #ifndef EBC_STYLE
-  const unsigned char N123_str[] MEM_TEXT = " 123=";
-  //const unsigned char N123_str[] MEM_TEXT = " Pin=";
+  const unsigned char N123_str[] MEM_TEXT = "123=";
+  //const unsigned char N123_str[] MEM_TEXT = "Pin=";
 #else
   #if EBC_STYLE == 321
-    const unsigned char N321_str[] MEM_TEXT = " 321=";
+    const unsigned char N321_str[] MEM_TEXT = "321=";
   #endif
 #endif
 
 const unsigned char Uf_str[] MEM_TEXT = "Uf=";
-const unsigned char vt_str[] MEM_TEXT = " Vt=";
+const unsigned char vt_str[] MEM_TEXT = "Vt=";
 const unsigned char Vgs_str[] MEM_TEXT = "@Vgs=";
 const unsigned char CapZeich[] MEM_TEXT = {'-',LCD_CHAR_CAP,'-',0};
 const unsigned char Cell_str[] MEM_TEXT = "Cell!";
 const unsigned char VCC_str[] MEM_TEXT = "VCC=";
 
 #if FLASHEND > 0x1fff
-  const unsigned char ESR_str[] MEM_TEXT = " ESR=";
-  const unsigned char VLOSS_str[] MEM_TEXT = " Vloss=";
+  const unsigned char ESR_str[] MEM_TEXT = "ESR=";
+  const unsigned char VLOSS_str[] MEM_TEXT = "Vloss=";
   const unsigned char Lis_str[] MEM_TEXT = "L=";
-  const unsigned char Ir_str[] MEM_TEXT = "  Ir=";
+  const unsigned char Ir_str[] MEM_TEXT = "Ir=";
 
   #ifndef WITH_UART
     //#define WITH_VEXT
@@ -937,7 +938,7 @@ const unsigned char VCC_str[] MEM_TEXT = "VCC=";
   #define LCD_CLEAR
 #endif
 
-const unsigned char VERSION_str[] MEM2_TEXT = "LCRDT-Tester v1.11";
+const unsigned char VERSION_str[] MEM2_TEXT = "LCRDT-Tester v1.12";
 
 const unsigned char AnKat[] MEM_TEXT = {'-', LCD_CHAR_DIODE1, '-',0};
 const unsigned char KatAn[] MEM_TEXT = {'-', LCD_CHAR_DIODE2, '-',0};
@@ -959,12 +960,12 @@ const unsigned char Resistor_str[] MEM_TEXT = {'-', LCD_CHAR_RESIS1, LCD_CHAR_RE
 #ifdef CHECK_CALL
   const unsigned char RIHI[] MEM_TEXT = "Ri_Hi=";
   const unsigned char RILO[] MEM_TEXT = "Ri_Lo=";
-  const unsigned char C0_str[] MEM_TEXT = "C0 ";
-  const unsigned char T50HZ[] MEM_TEXT = " 50Hz";
+  const unsigned char C0_str[] MEM_TEXT = "C0=";
+  const unsigned char T50HZ[] MEM_TEXT = "50Hz";
 #endif
 
 #ifdef AUTO_CAL
-  const unsigned char MinCap_str[] MEM2_TEXT = " >100nF";
+  const unsigned char MinCap_str[] MEM2_TEXT = ">100nF";
   const unsigned char REF_C_str[] MEM2_TEXT = "REF_C=";
   const unsigned char REF_R_str[] MEM2_TEXT = "REF_R=";
 #endif
@@ -972,14 +973,23 @@ const unsigned char Resistor_str[] MEM_TEXT = {'-', LCD_CHAR_RESIS1, LCD_CHAR_RE
 #ifdef DebugOut
   #define LCD_CLEAR
 #endif
-
+// oled has somehow problems to display greek chars, trying to implement u & Ohm 
 const unsigned char DiodeIcon1[] MEM_TEXT = { 0x11, 0x19, 0x1d, 0x1f, 0x1d, 0x19, 0x11, 0x00 }; // Diode-Icon Anode left
 const unsigned char DiodeIcon2[] MEM_TEXT = { 0x11, 0x13, 0x17, 0x1f, 0x17, 0x13, 0x11, 0x00 }; // Diode-Icon Anode right
+
 const unsigned char CapIcon[]    MEM_TEXT = { 0x1b, 0x1b, 0x1b, 0x1b, 0x1b, 0x1b, 0x1b, 0x00 }; // Capacitor Icon
+
 const unsigned char ResIcon1[]   MEM_TEXT = { 0x00, 0x0f, 0x08, 0x18, 0x08, 0x0f, 0x00, 0x00 }; // Resistor Icon1 left
 const unsigned char ResIcon2[]   MEM_TEXT = { 0x00, 0x1e, 0x02, 0x03, 0x02, 0x1e, 0x00, 0x00 }; // Resistor Icon2 right
-const unsigned char OmegaIcon[]  MEM_TEXT = { 0x00, 0x00, 0x0e, 0x11, 0x11, 0x0a, 0x1b, 0x00 }; // Omega Icon
-const unsigned char MicroIcon[]  MEM_TEXT = { 0x00, 0x00, 0x0a, 0x0a, 0x0a, 0x0e, 0x09, 0x10 }; // Micro Icon
+
+//const unsigned char OmegaIcon[]  MEM_TEXT = { 0x00, 0x00, 0x0e, 0x11, 0x11, 0x0a, 0x1b, 0x00 }; // Omega Icon
+const unsigned char OmegaIcon[]  MEM_TEXT ="Ohm";
+const byte OmegaSymbol  = B11110100;  // the symbol used for Ohm Ω or \u038f or \xF4
+//showSymbol(OmegaSymbol, "Ohm"); 
+
+//const unsigned char MicroIcon[]  MEM_TEXT = { 0x00, 0x00, 0x0a, 0x0a, 0x0a, 0x0e, 0x09, 0x10 }; // Micro Icon
+const unsigned char MicroIcon[]  MEM_TEXT = "u";
+//const byte MicroSymbol  = B?; // μ or \u00b5 or \xE4
 
 const unsigned char PinRLtab[] PROGMEM = { (1<<(TP1*2)), (1<<(TP2*2)), (1<<(TP3*2))};  // Table of commands to switch the  R-L resistors Pin 0,1,2
 const unsigned char PinADCtab[] PROGMEM = { (1<<TP1), (1<<TP2), (1<<TP3)};  // Table of commands to switch the ADC-Pins 0,1,2
@@ -1000,7 +1010,7 @@ const unsigned char PinADCtab[] PROGMEM = { (1<<TP1), (1<<TP2), (1<<TP3)};  // T
   const int8_t RefDiff EEMEM = REF_R_KORR;    // correction of internal Reference Voltage
 #endif
 
-const uint8_t PrefixTab[] MEM_TEXT = { 'p','n',LCD_CHAR_U,'m',0,'k','M'};  // p,n,u,m,-,k,M
+const uint8_t PrefixTab[] MEM_TEXT = { 'p','n','u','m',0,'k','M'};  // p,n,u(LCD_CHAR_U),m,-,k,M
 
 #ifdef AUTO_CAL
   //const uint16_t cap_null EEMEM = C_NULL; // Zero offset of capacity measurement 
@@ -1013,7 +1023,7 @@ const uint8_t EE_ESR_ZEROtab[] PROGMEM = {ESR_ZERO, ESR_ZERO, ESR_ZERO, ESR_ZERO
 
 // End of EEPROM-Strings
 
-// Multiplier for capacity measurement with R_H (470KOhm)
+// Multiplier for capacity measurement with R_H (470kOhm)
 unsigned int RHmultip = DEFAULT_RH_FAKT;
 
 #else
@@ -1253,13 +1263,12 @@ byte TestKeyPin = 17;  // A3
 #endif
 
 #ifdef OLED096
-  #ifdef OLED_I2C
+ #ifdef OLED_I2C
    #define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 64 // OLED display height, in pixels 
-    #define OLED_RESET 7
-  Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-   // Adafruit_SSD1306 display(OLED_RESET);
-  #else
+   #define SCREEN_HEIGHT 64 // OLED display height, in pixels 
+   #define OLED_RESET -1 // 7 Reset pin # (or -1 if sharing Arduino reset pin)
+   Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET); 
+ #else
     #define OLED_CLK   7   // D0
     #define OLED_MOSI  6   // D1
     #define OLED_RESET 5   // RES
@@ -1294,7 +1303,7 @@ void setup()
   
     lcd_string("LCRDT-Tester");
     lcd_set_cursor(1, 0);
-    lcd_string("WodoWiesel v1.11");
+    lcd_string("WodoWiesel v1.12");
   #endif
 
   #ifdef NOK5110
@@ -1306,7 +1315,9 @@ void setup()
 
   #ifdef OLED096
     #ifdef OLED_I2C
-      display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+      #define I2C_ADDRESS 0x3C // 0x78->3C, 0x7A->3D, 0x74->3A alternative
+       // right Bit (LowBit) not counted -> 0x78/2=0x3C
+      display.begin(SSD1306_SWITCHCAPVCC, I2C_ADDRESS);
     #else
       display.begin(SSD1306_SWITCHCAPVCC);
     #endif
@@ -1325,7 +1336,7 @@ void setup()
     lcd_set_cursor(2, 0);
     lcd_string("WodoWiesel");
     lcd_set_cursor(3, 0);
-    lcd_string("v1.11");
+    lcd_string("v1.12");
   #endif
 
   //ON_DDR = 0;
@@ -1342,7 +1353,7 @@ void setup()
 */
 
   // ADC-Init
-  ADCSRA = (1<<ADEN) | AUTO_CLOCK_DIV;  // prescaler=8 or 64 (if 8Mhz clock)
+  ADCSRA = (1<<ADEN) | AUTO_CLOCK_DIV;  // prescaler=8 or 64 (if 8MHz clock)
 
   #ifdef __AVR_ATmega8__
     //#define WDRF_HOME MCU_STATUS_REG
@@ -1457,6 +1468,15 @@ start:
     TestKey = digitalRead(TestKeyPin);
     delay(100);
   }
+  
+  #define RESETPIN 3 // || 26
+  int ResetKey = 1;
+  /*
+  while(ResetKey) {
+  //loop
+    digitalWrite(RESETPIN, LOW);
+  } */
+  
   lcd_clear();
   delay(100);
 
@@ -2055,7 +2075,7 @@ start:
           lcd_line4();
         #endif
 
-        lcd_fix_string(VLOSS_str);  // "  Vloss="
+        lcd_fix_string(VLOSS_str);  // " Vloss="
         DisplayValue(cap.v_loss,-1,'%',2);
       }
     #endif
@@ -2064,7 +2084,7 @@ start:
     DisplayValue(cap.cval_max,cap.cpre_max,'F',4);
 
     #if FLASHEND > 0x1fff
-      cap.esr = GetESR(cap.cb, cap.ca);   // get ESR of capacitor
+      cap.esr = GetESR(cap.cb,cap.ca);   // get ESR of capacitor
       if (cap.esr < 65530) {
 
         #if defined(NOK5110) || defined(OLED096)
@@ -2080,7 +2100,7 @@ start:
   }
 
   if(NumOfDiodes == 0) {    // no diodes are found
-    lcd_fix_string(TestFailed1);  // "No, unknown, or"
+    lcd_fix_string(TestFailed1);  // "No, unknown or"
     lcd_line2();      // 2 row 
     lcd_fix_string(TestFailed2);  // "damaged "
     lcd_fix_string(Component);    // "part"
@@ -2506,7 +2526,7 @@ void PinLayout(char pin1, char pin2, char pin3) {
   // pin1-3 is EBC or SGD or CGA
   #ifndef EBC_STYLE
     // Layout with 123= style
-    lcd_fix_string(N123_str);     // " 123="
+    lcd_fix_string(N123_str);     // "123="
     for (ii=0;ii<3;ii++) {
       if (ii == trans.e)  lcd_data(pin1); // Output Character in right order
       if (ii == trans.b)  lcd_data(pin2);
@@ -5794,7 +5814,7 @@ void lcd_data(unsigned char temp1) {
       break;
     }
     case LCD_CHAR_OMEGA: {  // omega
-      uart_putc('o');           // "ohm"
+      uart_putc('O');           // "Ohm"
       uart_putc('h');
       uart_putc('m'); break;
     }
