@@ -1,5 +1,5 @@
-## Footprint report - date Sat Oct 14 20:08:55 2023
-## Created by KiCad version 7.0.8
+## Footprint report - date 2024-04-05T21:54:44+0200
+## Created by KiCad version 8.0.1
 ## Unit = mm, Angle = deg.
 
 $BeginDESCRIPTION
@@ -10,10 +10,34 @@ lower_right_corner 122.119000 138.275000
 $EndBOARD
 
 $MODULE A1
-footprint Module:Arduino_Nano
+footprint Module:Arduino_Nano_WithMountingHoles
 attribut none
-position 118.395500 132.380000  orientation 180.00
+position 118.380000 132.300000  orientation 180.00
 layer front
+$PAD ""
+Shape Circle Layer both
+position  0.000000 -2.540000  size  1.780000  1.780000  orientation 0.00
+drill  1.780000
+shape_offset  0.000000  0.000000
+$EndPAD
+$PAD ""
+Shape Circle Layer both
+position  0.000000 38.100000  size  1.780000  1.780000  orientation 0.00
+drill  1.780000
+shape_offset  0.000000  0.000000
+$EndPAD
+$PAD ""
+Shape Circle Layer both
+position 15.240000 -2.540000  size  1.780000  1.780000  orientation 0.00
+drill  1.780000
+shape_offset  0.000000  0.000000
+$EndPAD
+$PAD ""
+Shape Circle Layer both
+position 15.240000 38.100000  size  1.780000  1.780000  orientation 0.00
+drill  1.780000
+shape_offset  0.000000  0.000000
+$EndPAD
 $PAD "1"
 Shape Rect Layer both
 position  0.000000  0.000000  size  1.600000  1.600000  orientation 0.00
@@ -232,7 +256,7 @@ $EndMODULE  G6**
 $MODULE G21
 footprint Logos:wiesel-kicad-back-white
 attribut virtual
-position 110.630000 125.990000  orientation -90.00
+position 111.550000 126.270000  orientation -90.00
 layer front
 $EndMODULE  G21
 
@@ -390,7 +414,7 @@ $EndMODULE  R5
 $MODULE R6
 footprint Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal
 attribut none
-position 107.810000 94.590000  orientation 0.00
+position 107.740000 94.580000  orientation 0.00
 layer front
 $PAD "1"
 Shape Circle Layer both
@@ -443,7 +467,7 @@ $EndMODULE  REF9**
 $MODULE Reset
 footprint Button_Switch_THT:SW_PUSH_1P1T_6x3.5mm_H4.3_APEM_MJTP1243
 attribut none
-position 108.170000 90.760000  orientation 180.00
+position 108.080000 90.750000  orientation 180.00
 layer front
 $PAD "1"
 Shape Rect Layer both

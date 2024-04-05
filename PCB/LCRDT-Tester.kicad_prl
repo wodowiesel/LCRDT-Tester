@@ -64,8 +64,14 @@
       35,
       36
     ],
-    "visible_layers": "002b1f0_ffffffff",
+    "visible_layers": "002b1ff_ffffffff",
     "zone_display_mode": 0
+  },
+  "git": {
+    "repo_password": "",
+    "repo_type": "",
+    "repo_username": "",
+    "ssh_key": ""
   },
   "meta": {
     "filename": "LCRDT-Tester.kicad_prl",

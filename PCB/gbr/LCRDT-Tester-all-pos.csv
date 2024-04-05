@@ -1,0 +1,13 @@
+Ref,Val,Package,PosX,PosY,Rot,Side
+"A1","Arduino_Nano_v3.x","Arduino_Nano_WithMountingHoles",26.388000,5.900000,180.000000,top
+"C1","100n","C_Disc_D5.0mm_W2.5mm_P5.00mm",4.350000,36.900000,90.000000,top
+"J1","Test","PinSocket_1x03_P2.54mm_Vertical",4.268500,28.580000,180.000000,top
+"J2","Disp","PinSocket_1x04_P2.54mm_Vertical",4.349000,15.850000,180.000000,top
+"R1","330","R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal",15.804000,27.680000,0.000000,top
+"R2","10K","R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal",23.454500,30.560000,180.000000,top
+"R3","330","R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal",15.888500,33.310000,0.000000,top
+"R4","10K","R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal",23.424000,36.670000,180.000000,top
+"R5","330","R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal",15.820000,39.890000,0.000000,top
+"R6","10K","R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal",15.748000,43.620000,0.000000,top
+"Reset","SW_Push","SW_PUSH_1P1T_6x3.5mm_H4.3_APEM_MJTP1243",16.088000,47.450000,180.000000,top
+"Start","SW_Push","SW_PUSH_6mm_H4.3mm",6.458000,10.100000,-90.000000,top

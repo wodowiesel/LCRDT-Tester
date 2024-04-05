@@ -2,7 +2,7 @@
 
 The Tester is a tool for identification of the electronic components and its values based on Arduino Nano v3 with internal reference incl. pcb schematics & code.
 
-![PCB](/docs/PCB-laypout-Wodowiesel-LCRDT-tester-schematics.png/)
+![PCB](/docs/PCB-layout-Wodowiesel-LCRDT-tester-schematics.png/)
 
 Compatibility list:
 

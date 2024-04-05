@@ -1,0 +1,18 @@
+### Footprint positions - created on 2024-04-05T21:54:09+0200 ###
+### Printed by KiCad version 8.0.1
+## Unit = mm, Angle = deg.
+## Side : All
+# Ref     Val                Package                                                PosX       PosY       Rot  Side
+A1        Arduino_Nano_v3.x  Arduino_Nano_WithMountingHoles                      26.3880     5.9000  180.0000  top
+C1        100n               C_Disc_D5.0mm_W2.5mm_P5.00mm                         4.3500    36.9000   90.0000  top
+J1        Test               PinSocket_1x03_P2.54mm_Vertical                      4.2685    28.5800  180.0000  top
+J2        Disp               PinSocket_1x04_P2.54mm_Vertical                      4.3490    15.8500  180.0000  top
+R1        330                R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal    15.8040    27.6800    0.0000  top
+R2        10K                R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal    23.4545    30.5600  180.0000  top
+R3        330                R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal    15.8885    33.3100    0.0000  top
+R4        10K                R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal    23.4240    36.6700  180.0000  top
+R5        330                R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal    15.8200    39.8900    0.0000  top
+R6        10K                R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal    15.7480    43.6200    0.0000  top
+Reset     SW_Push            SW_PUSH_1P1T_6x3.5mm_H4.3_APEM_MJTP1243             16.0880    47.4500  180.0000  top
+Start     SW_Push            SW_PUSH_6mm_H4.3mm                                   6.4580    10.1000  -90.0000  top
+## End
